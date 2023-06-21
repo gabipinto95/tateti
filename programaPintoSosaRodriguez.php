@@ -7,8 +7,9 @@ include_once("tateti.php");
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 /* ... COMPLETAR ... */
-
-
+//Rodríguez Valentín FAI 3214 TUDW valentindanielrodriguez@gmail.com valentin227
+//Sosa Nicolás FAI 4262 TUDW nicomsosaa@gmail.com Niconqn
+//Pinto Gabriel FAI 4325 TUDW gepintoopazo@gmail.com gabipinto95
 
 
 
