@@ -28,6 +28,7 @@ include_once("tateti.php");
 /**************************************/
 
 //Declaración de variables:
+// array $iniJuego
 
 
 //Inicialización de variables:
@@ -61,18 +62,33 @@ do {
     
     switch ($opcion) {
         case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+            $iniJuego = jugar();
 
             break;
+
         case 2: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
 
             break;
+
         case 3: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
 
             break;
         
-            //...
+        case 4:
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+
+            break;
+
+        case 5:
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 5
+
+            break;
+
+        case 6:
+                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 6
+
+            break;
     }
-} while ($opcion != X);
+} while ($opcion != 7);
