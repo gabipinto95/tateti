@@ -39,11 +39,24 @@ $juego = jugar();
 //print_r($juego);
 //imprimirResultado($juego);
 
+echo "****************";
+echo "Menú de opciones";
+echo "****************";
+
+echo "Elija una de las siguientes opciones:\n";
+echo "\n1) Jugar al tatetí \n";
+echo "2) Mostrar un juego\n";
+echo "3) Mostrar el primer juego ganador\n";
+echo "4) Mostrar porcentaje de juegos ganados\n";
+echo "5) Mostrar resumen de jugador\n";
+echo "6) Mostrar listado de juegos Ordenado por jugador O\n";
+echo "7) Salir";
 
 
-/*
+
+
 do {
-    $opcion = ...;
+    $opcion = trim(fgets(STDIN));;
 
     
     switch ($opcion) {
@@ -63,4 +76,3 @@ do {
             //...
     }
 } while ($opcion != X);
-*/
