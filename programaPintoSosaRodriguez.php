@@ -42,7 +42,7 @@ function cargaJuegos() {
  * @param array $totalJuegos
  * @param int $nro
  */
-function seleccionarOpcion($totalJuegos, $nro) {
+function mostrarOpcion($totalJuegos, $nro) {
     //string $resultado
     $juego = cargaJuegos()[$nro - 1];
     if($juego["puntosCruz"] > $juego["puntosCirculo"]) {
