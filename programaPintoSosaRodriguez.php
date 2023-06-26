@@ -21,18 +21,20 @@ include_once("tateti.php");
  * @return array
  */
 function cargaJuegos() {
-    //array $precarga
-    $precarga[0] = ["jugadorCruz" => "majo", "jugadorCirculo" => "pepe", "puntosCruz"=> 5, "puntosCirculo" => 0];
-    $precarga[1] = ["jugadorCruz" => "majo", "jugadorCirculo" => "pepe", "puntosCruz"=> 5, "puntosCirculo" => 0]; 
-    $precarga[2] = ["jugadorCruz" => "majo", "jugadorCirculo" => "pepe", "puntosCruz"=> 5, "puntosCirculo" => 0];
-    $precarga[3] = ["jugadorCruz" => "majo", "jugadorCirculo" => "pepe", "puntosCruz"=> 5, "puntosCirculo" => 0];
-    $precarga[4] = ["jugadorCruz" => "majo", "jugadorCirculo" => "pepe", "puntosCruz"=> 5, "puntosCirculo" => 0];
-    $precarga[5] = ["jugadorCruz" => "majo", "jugadorCirculo" => "pepe", "puntosCruz"=> 5, "puntosCirculo" => 0];
-    $precarga[6] = ["jugadorCruz" => "majo", "jugadorCirculo" => "pepe", "puntosCruz"=> 5, "puntosCirculo" => 0];
-    $precarga[7] = ["jugadorCruz" => "majo", "jugadorCirculo" => "pepe", "puntosCruz"=> 5, "puntosCirculo" => 0];
-    $precarga[8] = ["jugadorCruz" => "majo", "jugadorCirculo" => "pepe", "puntosCruz"=> 5, "puntosCirculo" => 0];
-    $precarga[9] = ["jugadorCruz" => "majo", "jugadorCirculo" => "pepe", "puntosCruz"=> 5, "puntosCirculo" => 0];
+    $coleccionJuegos=[];
 
+    $coleccionJuegos[0] = ["jugadorCruz" => "majo", "jugadorCirculo" => "pepe", "puntosCruz" =>5, "puntosCirculo" =>0];
+    $coleccionJuegos[1] = ["jugadorCruz" => "juan", "jugadorCirculo" => "majo", "puntosCruz" =>1, "puntosCirculo" =>1];
+    $coleccionJuegos[2] = ["jugadorCruz" => "ana", "jugadorCirculo" => "lisa", "puntosCruz" =>1, "puntosCirculo" =>1];
+    $coleccionJuegos[3] = ["jugadorCruz" => "roberto", "jugadorCirculo" => "pepe", "puntosCruz" =>0, "puntosCirculo" =>5];
+    $coleccionJuegos[4] = ["jugadorCruz" => "mauro", "jugadorCirculo" => "roberto", "puntosCruz" =>0, "puntosCirculo" =>5];
+    $coleccionJuegos[5] = ["jugadorCruz" => "majo", "jugadorCirculo" => "luis", "puntosCruz" =>1, "puntosCirculo" =>1];
+    $coleccionJuegos[6] = ["jugadorCruz" => "felipe", "jugadorCirculo" => "juan", "puntosCruz" =>5, "puntosCirculo" =>0];
+    $coleccionJuegos[7] = ["jugadorCruz" => "ana", "jugadorCirculo" => "majo", "puntosCruz" =>4, "puntosCirculo" =>0];
+    $coleccionJuegos[8] = ["jugadorCruz" => "luis", "jugadorCirculo" => "agustin", "puntosCruz" =>0, "puntosCirculo" =>5];
+    $coleccionJuegos[9] = ["jugadorCruz" => "juan", "jugadorCirculo" => "messi", "puntosCruz" =>3, "puntosCirculo" =>0];
+ 
+    return $coleccionJuegos;
 }
 
 
