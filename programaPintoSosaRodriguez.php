@@ -20,6 +20,7 @@ include_once("tateti.php");
  * Inicializa una estructura de datos
  * @return array
  */
+
 function cargaJuegos() {
     $coleccionJuegos=[];
 
@@ -36,84 +37,149 @@ function cargaJuegos() {
  
     return $coleccionJuegos;
 }
-/**
- * Función 2
- * Muestra un juego
- * @param array $totalJuegos
- * @param int $nro
- */
-function mostrarOpcion($totalJuegos, $nro) {
-    //string $resultado
+
+
+
+ /** MENU DE OPCIONES
+  * Muestra las opciones del menú de TATETI
+     * @return int
+     */
+
+function seleccionarOpcion(){    
+//int $opcionvalida
+   
+
+
+echo " \n ++++++++++++++++ MENU DE OPCIONES ++++++++++++++++ \n";
+
+echo "Opcion 1: JUGAR AL TATETI \n";
+
+echo "Opcion 2: MOSTRAR UN JUEGO \n";
+
+echo "Opcion 3: MOSTRAR EL PRIMER JUEGO GANADOR \n";
+
+echo "Opcion 4: MOSTRAR PORCENTAJE DE JUEGOS GANADOS \n";
+
+echo "Opcion 5: MOSTRAR RESUMEN DE JUGADOR \n";
+
+echo "Opcion 6: MOSTRAR LISTADO DE JUEGOS SIENDO CIRCULO \n";
+
+echo "Opcion 7: SALIR \n";
+
+
+
+    echo "Ingrese la opcion deseada: ";
+
+
+$opcionvalida= SolicitarNumeroEntre(1,7);
+
+
+return $opcionvalida;
+}
+
+
+            /**
+             * Funcion para la opcion numero 2 del MENU
+             * Muestra un juego
+             * @param array $totalJuegos
+             * @param int $nro
+             */
+
+            
+function mostrarJuego($totalJuegos, $nro) {
+//string $resultado
+//array $juego
+
     $juego = cargaJuegos()[$nro - 1];
     if($juego["puntosCruz"] > $juego["puntosCirculo"]) {
         $resultado = "Ganó " . $juego["jugadorCruz"];
     } elseif ($juego["puntosCruz"] < $juego["puntosCirculo"]) {
-        $resultado = "Ganó " . $juego["puntosCirculo"];
+        $resultado = "Ganó " . $juego["jugadorCirculo"];
     } else {
         $resultado = "Empate.";
     }
-    echo "++++++++++++++++++++++++++++ \n";
-    echo "Juego Tatetí " . $nro . " (".$resultado.") \n";
+    echo " \n ++++++++++++++++++++++++++++ \n";
+    echo " Juego Tatetí " . $nro . " (".$resultado.") \n";
     echo "Jugador X: " . $juego["jugadorCruz"] . " obtuvo " . $juego["puntosCruz"] . " puntos." . "\n";
     echo "Jugador O: " . $juego["jugadorCirculo"] . " obtuvo " . $juego["puntosCirculo"] . " puntos." . "\n";
-    echo "++++++++++++++++++++++++++++ \n";
-}
+    echo " \n ++++++++++++++++++++++++++++ \n";
+
+   }
 
 
 
 
+                            /**************************************/
+                            /*********** PROGRAMA PRINCIPAL *******/
+                            /**************************************/
 
 
-/**************************************/
-/*********** PROGRAMA PRINCIPAL *******/
-/**************************************/
-
-//Declaración de variables:
-// array $iniJuego
+      //Declaración de variables:
+     // array $iniJuego
+    //array $coleccion
 
 
 //Inicialización de variables:
 
+$coleccion= cargaJuegos();
 
 //Proceso:
 
-$juego = jugar();
-//print_r($juego);
-//imprimirResultado($juego);
 
 
 do {
-    $opcion = trim(fgets(STDIN));;
+    $opcion = seleccionarOpcion();
 
     
     switch ($opcion) {
-        case 1: 
+        case 1:                        // Jugar al TATETI (se añade un nuevo juego a la coleccion)
+            
+            
             $iniJuego = jugar();
+            
+            $coleccionJuegos= agregarjuego($coleccion,$iniJuego);             //Falta funcion para añadir nuevo juego
+
+            $resultados= imprimirResultado($iniJuego);                      
+
+            echo $resultados;
 
             break;
 
         case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+            //Muestra los resultados de un numero de juego indicado
+
+
+            echo "Ingrese el numero de la partida: ";
+
+             $nrojuego= trim(fgets(STDIN));
+
+             $resumenjuego= mostrarJuego($coleccion,$nrojuego);
+
+             echo $resumenjuego;
+
+
 
             break;
 
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            //         Indicando el nombre de un jugador, muestra el PRIMER juego que ha ganado.
 
             break;
         
         case 4:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+            // Se le solicita al usuario uno de los signos (X o O) y se muestra qué porcentaje de todos los juegos ganados se ganó con el mismo.
 
             break;
 
         case 5:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 5
+            //  Se SOLICITA el nombre de un jugador y se muestra un resumen de sus partidas.
 
             break;
 
         case 6:
-                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 6
+                //  Se mostrará en pantalla la estructura ordenada alfabéticamente por jugador  O.
+
+
 
             break;
     }
