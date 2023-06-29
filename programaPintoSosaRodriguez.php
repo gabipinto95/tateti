@@ -106,6 +106,41 @@ function mostrarJuego($totalJuegos, $nro) {
 
    }
 
+   /**
+    *Retorna el índice del primer juego ganado por dicho jugador y en caso de no haber uno, retorna -1
+    *@param array $coleccionJuegos
+    *@param string $nombre
+    *@return int
+    */
+    function obtienePrimerGanador($coleccionJuegos, $nombre) {
+        //int $indiceGanador, $i
+        //bool $bandera
+        //array $juego
+
+        $i = 0;
+        $bandera = true;
+        $indiceGanador = -1;
+
+        while($i < count($coleccionJuegos) && $bandera) {
+            $juego = $coleccionJuegos[$i];
+
+            if($juego["jugadorCruz"] == $nombre) {
+                if($juego["puntosCruz"] > $juego["puntosCirculo"]) {
+                    $indiceGanador = $i;
+                    $bandera = false;
+                }
+
+            } elseif($juego["jugadorCirculo"] == $nombre) {
+                if($juego["puntosCirculo"] > $juego["puntosCruz"]) {
+                    $indiceGanador = $i;
+                    $bandera = false;
+                }
+            }
+            $i++;   
+        }
+        return $indiceGanador;
+    }
+
 
 
 
