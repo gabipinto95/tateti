@@ -78,30 +78,28 @@ return $opcionvalida;
 }
 
 
-                        //OPCION 1
+//OPCIÓN 1
 
-// Añade un nuevo juego a la coleccion ya precargada
+// Añade un nuevo juego a la colección precargada
 
- function agregarJuegos($precarga1,$jugadas){
+ function agregarJuegos($coleccion1,$jugadas){
     
-    array_push($precarga1,$jugadas);
+    array_push($coleccion1,$jugadas);
     
-    return $precarga1;
+    return $coleccion1;
     
 }
 
+//OPCIÓN 2
 
-
-            /**
-            * Muestra un juego especifico
-             * @param array $totalJuegos
-             * @param int $nro
-             */
-
-            
+/**
+  * Muestra un juego específico
+  * @param array $coleccion2
+  * @param int $nro
+  */      
 function mostrarJuego($coleccion2, $nro) {           //Opcion 2
-//string $resultado
-//array $juego
+    //string $resultado
+    //array $juego
 
     $juego= $coleccion2[$nro - 1];
     if($juego["puntosCruz"] > $juego["puntosCirculo"]) {
@@ -120,7 +118,7 @@ function mostrarJuego($coleccion2, $nro) {           //Opcion 2
    }
 
 
-                                  //Opcion 3
+//OPCIÓN 3
    /**
     *Retorna el índice del primer juego ganado por dicho jugador y en caso de no haber uno, retorna -1
     *@param array $coleccion3
@@ -157,10 +155,10 @@ function mostrarJuego($coleccion2, $nro) {           //Opcion 2
     }
 
 
-                                //OPCION 4
+    //OPCIÓN 4
 
 
-    function solicitarSimbolo() {               //VERIFICADOR X o O 
+    function solicitarSimbolo() {               //VERIFICADOR X u O 
 
 
     do {
@@ -265,9 +263,9 @@ function ganadasSimbolo ($signo4, $ganadas){
     }
 
 }
-                                    //OPCION 5
+//OPCIÓN 5
 
-function resumenjugador($coleccion5, $nombreJugador) {                  //OPCION NUMERO 5 DEL MENU
+function resumeJugadas($coleccion5, $nombreJugador) {                  //OPCION NUMERO 5 DEL MENU
 
     $resumenJugador= [
 
@@ -352,8 +350,33 @@ function resumenjugador($coleccion5, $nombreJugador) {                  //OPCION
 
 }
 
-                            
+//OPCIÓN 6
+/**
+ * Compara y ordena los elementos de dos arreglos asociativos
+ * @param array $juegoA
+ * @param array $juegoB
+ * @return int
+ */ 
+function compara($juegoA, $juegoB) {
+    //int $comparacion
+    if($juegoA["jugadorCirculo"] > $juegoB["jugadorCirculo"]) {
+        $comparacion = 1;
+    } elseif($juegoB["jugadorCirculo"] > $juegoA["jugadorCirculo"]) {
+        $comparacion = -1;
+    } else {
+        $comparacion = 0;
+    }
+    return $comparacion;
+}
 
+/**
+ * Ordena y muestra alfabéticamente los nombres de los jugadores cuyo símbolo es O
+ * @param array $coleccion6
+ */
+function ordenaJugadasPorO($coleccion6) {
+    uasort($coleccion6, "compara");
+    print_r($coleccion6);
+}
 
 
 
@@ -510,7 +533,7 @@ do {
 
             $nom= strtolower(trim(fgets(STDIN)));
 
-            $resumen = resumenjugador($coleccion,$nom);
+            $resumen = resumeJugadas($coleccion,$nom);
 
             echo $resumen;
 
