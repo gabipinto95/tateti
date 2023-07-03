@@ -51,9 +51,9 @@ function seleccionarOpcion(){
    
 
 
-echo " \n ++++++++++++++++ MENU DE OPCIONES ++++++++++++++++ \n";
+echo " \n ++++++++++++++++ MENU DE TATETI ++++++++++++++++ \n";
 
-echo "Opcion 1: JUGAR AL TATETI \n";
+echo "Opcion 1: JUGAR PARTIDA \n";
 
 echo "Opcion 2: MOSTRAR UN JUEGO \n";
 
@@ -63,7 +63,7 @@ echo "Opcion 4: MOSTRAR PORCENTAJE DE JUEGOS GANADOS \n";
 
 echo "Opcion 5: MOSTRAR RESUMEN DE JUGADOR \n";
 
-echo "Opcion 6: MOSTRAR LISTADO DE JUEGOS SIENDO CIRCULO \n";
+echo "Opcion 6: MOSTRAR JUEGOS ORDENADOS SEGUN JUGADOR CIRCULO \n";
 
 echo "Opcion 7: SALIR \n";
 
@@ -80,7 +80,11 @@ return $opcionvalida;
 
 //OPCIÓN 1
 
-// Añade un nuevo juego a la colección precargada
+/**  Añade un nuevo juego a la coleccion ya precargada
+ * @param array $coleccion1
+ * @param array $jugadas  (generada por inijuego)
+ * @return array
+ */
 
  function agregarJuegos($coleccion1,$jugadas){
     
@@ -100,14 +104,15 @@ return $opcionvalida;
 function mostrarJuego($coleccion2, $nro) {           //Opcion 2
     //string $resultado
     //array $juego
-
+    
+       
     $juego= $coleccion2[$nro - 1];
     if($juego["puntosCruz"] > $juego["puntosCirculo"]) {
         $resultado = "Ganó " . $juego["jugadorCruz"];
     } elseif ($juego["puntosCruz"] < $juego["puntosCirculo"]) {
         $resultado = "Ganó " . $juego["jugadorCirculo"];
     } else {
-        $resultado = "Empate.";
+        $resultado = "Empate";
     }
     echo " \n ++++++++++++++++++++++++++++ \n";
     echo " Juego Tatetí " . $nro . " (".$resultado.") \n";
@@ -118,7 +123,7 @@ function mostrarJuego($coleccion2, $nro) {           //Opcion 2
    }
 
 
-//OPCIÓN 3
+                    //OPCIÓN 3
    /**
     *Retorna el índice del primer juego ganado por dicho jugador y en caso de no haber uno, retorna -1
     *@param array $coleccion3
@@ -127,7 +132,7 @@ function mostrarJuego($coleccion2, $nro) {           //Opcion 2
     */
     function obtienePrimerGanador($coleccion3, $nombre) {
         //int $indiceGanador, $i
-        //bool $bandera
+        //boolean $bandera
         //array $juego3
 
         $i = 0;
@@ -157,11 +162,13 @@ function mostrarJuego($coleccion2, $nro) {           //Opcion 2
 
     //OPCIÓN 4
 
+    /**  Solicita y verifica el simbolo ingresado
+ *  @return string
+ */
 
-    function solicitarSimbolo() {               //VERIFICADOR X u O 
+function solicitarSimbolo() {             
 
-
-    do {
+     do {
 	
         echo ("Ingrese un signo (X o O): ");
 
@@ -185,11 +192,13 @@ function mostrarJuego($coleccion2, $nro) {           //Opcion 2
 }
 
 
-                //Cuenta las partidas ganadas totales y segun  su simbolo
-
+  /** Cuenta las partidas ganadas totales y segun  su simbolo
+ * @param array $coleccion4
+ * @return array
+ */
 
 function totalGanadas($coleccion4) {               
-
+//array $juegosTotales
 
 
     $juegosTotales=[
@@ -232,17 +241,18 @@ function totalGanadas($coleccion4) {
 }
 
 
-                //Muestra las partidas ganadas SEGUN determinado simbolo
-
-
+/**    Muestra las partidas ganadas SEGUN determinado simbolo
+ * @param string $signo4
+ * @param array $ganadas
+ */
 
 function ganadasSimbolo ($signo4, $ganadas){
-
+//float $porcentaje
 
 
     if ($signo4== "X") {
 
-        $porcentaje= round(($ganadas["GanadasPorX"] / $ganadas["juegosGanados"]) * 100,2);    
+        $porcentaje= round(($ganadas["GanadasPorX"] / $ganadas["juegosGanados"]) * 100,0);    
 
 
     echo " Las Partidas ganadas por " . $signo4. " son: ". $ganadas["GanadasPorX"]. " del total de juegos ganados, un ". $porcentaje. " % fueron ganadas por este simbolo \n";
@@ -252,20 +262,25 @@ function ganadasSimbolo ($signo4, $ganadas){
     if($signo4== "O") {
 
 
-    $porcentaje= round(($ganadas["GanadasPorO"] / $ganadas["juegosGanados"]) * 100,2);
+    $porcentaje= round(($ganadas["GanadasPorO"] / $ganadas["juegosGanados"]) * 100,0);
 
 
     echo " \n Las partidas ganadas por ". $signo4. " son: ". $ganadas["GanadasPorO"]. " del total de juegos ganados, un ". $porcentaje. " %  fueron ganadas por este simbolo \n";
 
-
-
-
     }
 
 }
-//OPCIÓN 5
+            
+            //OPCIÓN 5
 
-function resumeJugadas($coleccion5, $nombreJugador) {                  //OPCION NUMERO 5 DEL MENU
+/** Muestra un resumen de un jugador específico
+ * @param array $coleccion5
+ * @param string $nombrejugador
+ * @return array
+ */
+                
+function resumeJugadas($coleccion5, $nombreJugador) {
+//array $resumenJugador
 
     $resumenJugador= [
 
@@ -308,7 +323,7 @@ function resumeJugadas($coleccion5, $nombreJugador) {                  //OPCION 
             }
         
         }
-                         //Si el jugador era CIRCULO:
+                     //Si el jugador fue CIRCULO:
 
 
         if ($juego5["jugadorCirculo"]== $nombreJugador) {
@@ -333,7 +348,6 @@ function resumeJugadas($coleccion5, $nombreJugador) {                  //OPCION 
         } 
 
     }
-
         echo "\n+++++++++++++++++++++++++++++++++++++++++++++ \n";
 
         echo "JUGADOR ". $nombreJugador. "\n";
@@ -369,6 +383,7 @@ function compara($juegoA, $juegoB) {
     return $comparacion;
 }
 
+
 /**
  * Ordena y muestra alfabéticamente los nombres de los jugadores cuyo símbolo es O
  * @param array $coleccion6
@@ -377,12 +392,6 @@ function ordenaJugadasPorO($coleccion6) {
     uasort($coleccion6, "compara");
     print_r($coleccion6);
 }
-
-
-
-
-
-
 
 
 
@@ -397,8 +406,8 @@ function ordenaJugadasPorO($coleccion6) {
         //Opcion 1
 
      // array $iniJuego
-    //array $coleccion
-    //string $resultados
+    // array $coleccion
+    // string $resultados
     
         //Opcion 2
 
@@ -426,7 +435,7 @@ function ordenaJugadasPorO($coleccion6) {
 
     // Opcion 6
 
-// array 
+// array $ordenaJuegosO
 
 
 
@@ -460,30 +469,34 @@ do {
 
             break;
 
-        case 2: 
-            //Muestra los resultados de un numero de juego indicado
+        case 2:                         //Muestra los resultados de un numero de juego especifico
+            
+            $n=count($coleccion);
 
+            echo "ingrese el numero de juego a mostrar: ";
+            $nroJuego= trim(fgets(STDIN));
+    
+        while ($nroJuego > $n || $nroJuego <= 0) {
+        echo "El número ingresado no cumple con los requisitos. Por favor, ingrese nuevamente: ";
+        $nroJuego = trim(fgets(STDIN));
+        }
+           
+        $resumenJuego= mostrarJuego($coleccion,$nroJuego);
 
-            echo "Ingrese el numero de la partida: ";
-
-             $nrojuego= trim(fgets(STDIN));
-
-             $resumenJuego= mostrarJuego($coleccion,$nrojuego);
-
-             echo $resumenJuego;
+        echo $resumenJuego;
 
 
 
             break;
 
-        case 3: 
-            //         Indicando el nombre de un jugador, muestra el PRIMER juego que ha ganado.
+        case 3:                         //Indicando el nombre de un jugador, muestra el PRIMER juego que ha ganado.
+           
 
 
             echo "Ingrese el nombre del jugador: ";
 
 
-            $nombrePrimer= trim(fgets(STDIN));
+            $nombrePrimer=  strtolower(trim(fgets(STDIN)));
     
             $primerGanada= obtienePrimerGanador($coleccion, $nombrePrimer);
     
@@ -502,15 +515,10 @@ do {
     
                 
 
-
-
-
-
             break;
         
-        case 4:
-            // Se le solicita al usuario uno de los signos (X o O) y se muestra qué porcentaje de todos los juegos ganados se ganó con el mismo.
-
+        case 4:             //Se le solicita al usuario uno de los signos (X o O) y se muestra qué porcentaje de los juegos ganados se ganó con el mismo.
+            
 
             $signoTateti= solicitarSimbolo();          
 
@@ -520,14 +528,11 @@ do {
                        
                  
 
-
-
-
             break;
 
-        case 5:
-            //  Se SOLICITA el nombre de un jugador y se muestra un resumen de sus partidas.
+        case 5:      //Se SOLICITA el nombre de un jugador y se muestra un resumen de sus partidas.
 
+            
 
             echo "Ingrese el nombre del jugador deseado: ";
 
@@ -538,14 +543,12 @@ do {
             echo $resumen;
 
 
-
-
             break;
 
-        case 6:
-                //  Se mostrará en pantalla la estructura ordenada alfabéticamente por jugador  O.
+        case 6:     //Se mostrará en pantalla la estructura ordenada alfabéticamente por jugador  O.
+                
 
-
+            $ordenaJuegosO= ordenaJugadasPorO($coleccion);
 
             break;
     }
