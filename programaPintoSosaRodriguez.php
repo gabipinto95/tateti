@@ -24,16 +24,16 @@ include_once("tateti.php");
 function cargaJuegos() {
     $coleccionJuegos=[];
 
-    $coleccionJuegos[0] = ["jugadorCruz" => "majo", "jugadorCirculo" => "pepe", "puntosCruz" => 5, "puntosCirculo" => 0];
-    $coleccionJuegos[1] = ["jugadorCruz" => "juan", "jugadorCirculo" => "majo", "puntosCruz" => 1, "puntosCirculo" => 1];
-    $coleccionJuegos[2] = ["jugadorCruz" => "ana", "jugadorCirculo" => "lisa", "puntosCruz" => 1, "puntosCirculo" => 1];
-    $coleccionJuegos[3] = ["jugadorCruz" => "roberto", "jugadorCirculo" => "pepe", "puntosCruz" => 0, "puntosCirculo" => 5];
-    $coleccionJuegos[4] = ["jugadorCruz" => "mauro", "jugadorCirculo" => "roberto", "puntosCruz" =>0, "puntosCirculo" => 5];
-    $coleccionJuegos[5] = ["jugadorCruz" => "majo", "jugadorCirculo" => "luis", "puntosCruz" => 1, "puntosCirculo" => 1];
-    $coleccionJuegos[6] = ["jugadorCruz" => "felipe", "jugadorCirculo" => "juan", "puntosCruz" => 5, "puntosCirculo" => 0];
-    $coleccionJuegos[7] = ["jugadorCruz" => "ana", "jugadorCirculo" => "majo", "puntosCruz" => 4, "puntosCirculo" => 0];
-    $coleccionJuegos[8] = ["jugadorCruz" => "luis", "jugadorCirculo" => "agustin", "puntosCruz" => 0, "puntosCirculo" => 5];
-    $coleccionJuegos[9] = ["jugadorCruz" => "juan", "jugadorCirculo" => "messi", "puntosCruz" => 3, "puntosCirculo" => 0];
+    $coleccionJuegos[0] = ["jugadorCruz" => "MAJO", "jugadorCirculo" => "PEPE", "puntosCruz" => 5, "puntosCirculo" => 0];
+    $coleccionJuegos[1] = ["jugadorCruz" => "JUAN", "jugadorCirculo" => "MAJO", "puntosCruz" => 1, "puntosCirculo" => 1];
+    $coleccionJuegos[2] = ["jugadorCruz" => "ANA", "jugadorCirculo" => "LISA", "puntosCruz" => 1, "puntosCirculo" => 1];
+    $coleccionJuegos[3] = ["jugadorCruz" => "ROBERTO", "jugadorCirculo" => "PEPE", "puntosCruz" => 0, "puntosCirculo" => 5];
+    $coleccionJuegos[4] = ["jugadorCruz" => "MAURO", "jugadorCirculo" => "ROBERTO", "puntosCruz" =>0, "puntosCirculo" => 5];
+    $coleccionJuegos[5] = ["jugadorCruz" => "MAJO", "jugadorCirculo" => "LUIS", "puntosCruz" => 1, "puntosCirculo" => 1];
+    $coleccionJuegos[6] = ["jugadorCruz" => "FELIPE", "jugadorCirculo" => "JUAN", "puntosCruz" => 5, "puntosCirculo" => 0];
+    $coleccionJuegos[7] = ["jugadorCruz" => "ANA", "jugadorCirculo" => "MAJO", "puntosCruz" => 5, "puntosCirculo" => 0];
+    $coleccionJuegos[8] = ["jugadorCruz" => "LUIS", "jugadorCirculo" => "AGUSTIN", "puntosCruz" => 0, "puntosCirculo" => 5];
+    $coleccionJuegos[9] = ["jugadorCruz" => "JUAN", "jugadorCirculo" => "MESSI", "puntosCruz" => 3, "puntosCirculo" => 0];
  
     return $coleccionJuegos;
 }
@@ -249,7 +249,7 @@ function totalGanadas($coleccion4) {
 function ganadasSimbolo ($signo4, $ganadas){
 //float $porcentaje
 
-
+if ($ganadas["juegosGanados"] > 0){
     if ($signo4== "X") {
 
         $porcentaje= round(($ganadas["GanadasPorX"] / $ganadas["juegosGanados"]) * 100,0);    
@@ -268,9 +268,11 @@ function ganadasSimbolo ($signo4, $ganadas){
     echo " \n Las partidas ganadas por ". $signo4. " son: ". $ganadas["GanadasPorO"]. " del total de juegos ganados, un ". $porcentaje. " %  fueron ganadas por este simbolo \n";
 
     }
-
 }
-            
+    else{
+        echo "Aun no se ha ganado ninguna partida";
+    }
+}           
             //OPCIÓN 5
 
 /** Muestra un resumen de un jugador específico
@@ -307,7 +309,7 @@ function resumeJugadas($coleccion5, $nombreJugador) {
         
             $resumenJugador["juegosGanados"] = $resumenJugador["juegosGanados"] + 1;
 
-            $resumenJugador["puntosAcumulados"]= $resumenJugador["puntosAcumulados"] + 5;  
+            $resumenJugador["puntosAcumulados"]= $resumenJugador["puntosAcumulados"] + $juego5["puntosCruz"];  
             
         
 
@@ -319,7 +321,7 @@ function resumeJugadas($coleccion5, $nombreJugador) {
 
             $resumenJugador["juegosEmpatados"]= $resumenJugador["juegosEmpatados"] + 1;
 
-            $resumenJugador["puntosAcumulados"]= $resumenJugador["puntosAcumulados"] + 1;
+            $resumenJugador["puntosAcumulados"]= $resumenJugador["puntosAcumulados"] + $juego5["puntosCruz"];
             }
         
         }
@@ -332,7 +334,7 @@ function resumeJugadas($coleccion5, $nombreJugador) {
             
                 $resumenJugador["juegosGanados"] = $resumenJugador["juegosGanados"] + 1;
     
-                $resumenJugador["puntosAcumulados"]= $resumenJugador["puntosAcumulados"] + 5; 
+                $resumenJugador["puntosAcumulados"]= $resumenJugador["puntosAcumulados"] + $juego5["puntosCirculo"]; 
 
             }elseif ($juego5["puntosCruz"] > $juego5["puntosCirculo"]){
     
@@ -342,7 +344,7 @@ function resumeJugadas($coleccion5, $nombreJugador) {
     
                 $resumenJugador["juegosEmpatados"]= $resumenJugador["juegosEmpatados"] + 1;
     
-                $resumenJugador["puntosAcumulados"]= $resumenJugador["puntosAcumulados"] + 1;
+                $resumenJugador["puntosAcumulados"]= $resumenJugador["puntosAcumulados"] + $juego5["puntosCirculo"];
             }
 
         } 
@@ -403,19 +405,19 @@ function ordenaJugadasPorO($coleccion6) {
 
       //Declaración de variables:
 
-        //Opcion 1
+       //Opcion 1
 
      // array $iniJuego
     // array $coleccion
-    // string $resultados
     
-        //Opcion 2
+     //Opcion 2
 
 
- // int $nrojuego
- // string $resumenJuego
+ // int $n
+ // int $nroJuego
 
-        //Opcion 3
+
+     //Opcion 3
 
 // string $nombrePrimer
 // int $primerGanada
@@ -425,17 +427,14 @@ function ordenaJugadasPorO($coleccion6) {
 
 // string $signoTateti
 // array $totalGanadas
-// string $totalSimbolo
+
 
 
     //Opcion 5
 
 // string $nom
-// string $resumen
 
-    // Opcion 6
 
-// array $ordenaJuegosO
 
 
 
@@ -460,13 +459,12 @@ do {
             
             $iniJuego = jugar();
            
-            $coleccion= agregarJuegos($precarga,$iniJuego);
+            $coleccion= agregarJuegos($coleccion,$iniJuego);
 
            
-            $resultados= imprimirResultado($iniJuego);
+            imprimirResultado($iniJuego);
 
-            echo $resultados;
-
+            
             break;
 
         case 2:                         //Muestra los resultados de un numero de juego especifico
@@ -477,15 +475,16 @@ do {
             $nroJuego= trim(fgets(STDIN));
     
         while ($nroJuego > $n || $nroJuego <= 0) {
+
         echo "El número ingresado no cumple con los requisitos. Por favor, ingrese nuevamente: ";
+
         $nroJuego = trim(fgets(STDIN));
         }
            
-        $resumenJuego= mostrarJuego($coleccion,$nroJuego);
 
-        echo $resumenJuego;
+        mostrarJuego($coleccion,$nroJuego);
 
-
+        
 
             break;
 
@@ -496,7 +495,7 @@ do {
             echo "Ingrese el nombre del jugador: ";
 
 
-            $nombrePrimer=  strtolower(trim(fgets(STDIN)));
+            $nombrePrimer=  strtoupper(trim(fgets(STDIN)));
     
             $primerGanada= obtienePrimerGanador($coleccion, $nombrePrimer);
     
@@ -506,7 +505,8 @@ do {
     
                 echo "\n La primer partida ganada por ". $nombrePrimer ." fue la numero ". ($primerGanada + 1). " y el resultado fue el siguiente: \n ";
     
-                echo $primerGanador= mostrarJuego($coleccion,$primerGanada + 1). "\n";
+                mostrarJuego($coleccion,$primerGanada + 1). "\n";
+
                 }
                 else {
     
@@ -524,7 +524,7 @@ do {
 
             $totalGanadas= totalGanadas($coleccion);    
                        
-           $totalSimbolo= ganadasSimbolo($signoTateti, $totalGanadas);
+            ganadasSimbolo($signoTateti, $totalGanadas);
                        
                  
 
@@ -536,19 +536,18 @@ do {
 
             echo "Ingrese el nombre del jugador deseado: ";
 
-            $nom= strtolower(trim(fgets(STDIN)));
+            $nom= strtoupper(trim(fgets(STDIN)));
 
-            $resumen = resumeJugadas($coleccion,$nom);
+            resumeJugadas($coleccion,$nom);
 
-            echo $resumen;
-
+            
 
             break;
 
         case 6:     //Se mostrará en pantalla la estructura ordenada alfabéticamente por jugador  O.
                 
 
-            $ordenaJuegosO= ordenaJugadasPorO($coleccion);
+            ordenaJugadasPorO($coleccion);
 
             break;
     }
